@@ -7,6 +7,7 @@ import com.nicklasslagbrand.kmmtest.androidApp.databinding.ActivityMainBinding
 import com.nicklasslagbrand.kmmtest.androidApp.feature.RocketLaunchesAdapter
 import com.nicklasslagbrand.kmmtest.androidApp.feature.SpaceXViewModel
 import org.koin.android.ext.android.inject
+import java.net.UnknownHostException
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: SpaceXViewModel by inject()
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.errorLiveData.observe(this, {
-            this.errorDialog(it.localizedMessage, getString(R.string.error_title))
+            this.errorDialog(it.localizedMessage, it.toString())
         })
     }
 }

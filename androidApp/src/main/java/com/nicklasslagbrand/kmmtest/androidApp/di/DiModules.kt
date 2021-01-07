@@ -1,4 +1,4 @@
-package com.nicklasslagbrand.kmmtest.androidApp.core
+package com.nicklasslagbrand.kmmtest.androidApp.di
 
 import com.nicklasslagbrand.kmmtest.androidApp.feature.SpaceXViewModel
 import com.nicklasslagbrand.kmmtest.shared.SpaceXRepository
@@ -9,6 +9,6 @@ val repositoriesModule = module{
     single { SpaceXRepository() }
 }
 
-val viewmodelModel = module {
+val viewModelModel = module {
     viewModel { SpaceXViewModel(get()) }
 }

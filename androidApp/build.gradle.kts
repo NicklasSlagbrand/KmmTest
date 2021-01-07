@@ -8,6 +8,8 @@ dependencies {
 
     val koinVersion = "2.1.6"
     val lifecycleVersion = "2.2.0"
+    val coroutinesVersion = "1.3.9"
+
 
 
     implementation(project(":shared"))
@@ -25,6 +27,17 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
     implementation("com.jakewharton.timber:timber:4.7.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
+    testImplementation("junit:junit:4.13.1")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
+    testImplementation("org.koin:koin-test:$koinVersion")
+    testImplementation("io.mockk:mockk:1.10.2")
+    testImplementation("org.amshove.kluent:kluent-android:1.60")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
 }
 
 android {
