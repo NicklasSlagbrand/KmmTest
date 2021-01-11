@@ -1,7 +1,6 @@
 package com.nicklasslagbrand.kmmtest.androidApp.feature
 
 import androidx.lifecycle.*
-import com.nicklasslagbrand.kmmtest.shared.data.repository.SpaceXRepository
 import com.nicklasslagbrand.kmmtest.shared.domain.Result
 import com.nicklasslagbrand.kmmtest.shared.domain.entity.RocketLaunch
 import com.nicklasslagbrand.kmmtest.shared.domain.usecase.GetAllLaunchesUseCase

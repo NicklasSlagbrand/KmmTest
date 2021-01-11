@@ -31,6 +31,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
+    implementation ("dev.bluefalcon:library-android:0.0.3")
+
     testImplementation("junit:junit:4.13.1")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
     testImplementation("org.koin:koin-test:$koinVersion")
