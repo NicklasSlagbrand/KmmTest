@@ -9,6 +9,10 @@ There are 3 key aspects to this architecture:
 2. The architecture fits well in to the KMM(Kotlin multiplatform) & Android. I see no reason why it would not be the same for iOS in this case.
 3. A strict dependency rule that is displayed below.
 
+![Architecture](./images/kmmTest.png)
+![Dependency Rule](./images/dependecy_rule.png)
+
+
 
 Outakes: 
 - KMM makes it easy to leave handle integration, business logic & unit testing in a unified way.
