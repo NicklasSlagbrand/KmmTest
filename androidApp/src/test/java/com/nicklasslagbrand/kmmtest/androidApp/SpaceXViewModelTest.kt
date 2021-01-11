@@ -6,8 +6,10 @@ import com.nicklasslagbrand.kmmtest.androidApp.testUtils.CoroutineTestRule
 import com.nicklasslagbrand.kmmtest.androidApp.testUtils.startKoin
 import com.nicklasslagbrand.kmmtest.androidApp.testUtils.testObserver
 import com.nicklasslagbrand.kmmtest.androidApp.testUtils.testRocketLaunch
-import com.nicklasslagbrand.kmmtest.shared.SpaceXRepository
+import com.nicklasslagbrand.kmmtest.shared.data.repository.SpaceXRepository
 import com.nicklasslagbrand.kmmtest.shared.domain.Result
+import com.nicklasslagbrand.kmmtest.shared.domain.usecase.GetAllLaunchesUseCase
+import com.nicklasslagbrand.kmmtest.shared.domain.usecase.UseCase
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -30,13 +32,13 @@ class SpaceXViewModelTest : AutoCloseKoinTest() {
     val rule = InstantTaskExecutorRule()
 
     private val viewModel: SpaceXViewModel by inject()
-    private val repo = mockk<SpaceXRepository>()
+    private val useCase = mockk<GetAllLaunchesUseCase>()
 
     @Test
     fun `check viewmodel recieves launches correctly`() = runBlockingTest  {
         val observer = viewModel.launchesLiveData.testObserver()
         coEvery {
-            repo.getAllRocketLaunches()
+            useCase.call(UseCase.None)
         } returns Result.Success(listOf(testRocketLaunch))
 
         viewModel.getAllRocketLaunches()
@@ -48,7 +50,7 @@ class SpaceXViewModelTest : AutoCloseKoinTest() {
         val observer = viewModel.errorLiveData.testObserver()
         val exception = Exception()
         coEvery {
-            repo.getAllRocketLaunches()
+            useCase.call(UseCase.None)
         } returns Result.Failure(exception)
 
         viewModel.getAllRocketLaunches()
@@ -60,7 +62,7 @@ class SpaceXViewModelTest : AutoCloseKoinTest() {
     fun setup(){
         clearAllMocks()
 
-        startKoin(overridesModule = module(override=true) { single { repo } })
+        startKoin(overridesModule = module(override=true) { single { useCase } })
     }
 
 }

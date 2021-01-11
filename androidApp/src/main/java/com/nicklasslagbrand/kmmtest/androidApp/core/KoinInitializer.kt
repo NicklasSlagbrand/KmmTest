@@ -3,6 +3,7 @@ package com.nicklasslagbrand.kmmtest.androidApp.core
 import android.content.Context
 import androidx.startup.Initializer
 import com.nicklasslagbrand.kmmtest.androidApp.di.repositoriesModule
+import com.nicklasslagbrand.kmmtest.androidApp.di.useCaseModel
 import com.nicklasslagbrand.kmmtest.androidApp.di.viewModelModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -20,6 +21,7 @@ class KoinInitializer: Initializer<KoinApplication> {
             modules(
                 listOf(
                     repositoriesModule,
+                    useCaseModel,
                     viewModelModel
                 )
             )

@@ -1,15 +1,16 @@
 package com.nicklasslagbrand.kmmtest.androidApp.feature
 
 import androidx.lifecycle.*
-import com.nicklasslagbrand.kmmtest.shared.SpaceXRepository
+import com.nicklasslagbrand.kmmtest.shared.data.repository.SpaceXRepository
 import com.nicklasslagbrand.kmmtest.shared.domain.Result
 import com.nicklasslagbrand.kmmtest.shared.domain.entity.RocketLaunch
+import com.nicklasslagbrand.kmmtest.shared.domain.usecase.GetAllLaunchesUseCase
+import com.nicklasslagbrand.kmmtest.shared.domain.usecase.UseCase
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.net.UnknownHostException
 
 class SpaceXViewModel(
-    private val spaceXRepository: SpaceXRepository,
+    private val getAllLaunchesUseCase: GetAllLaunchesUseCase,
 ) : ViewModel(), LifecycleObserver {
     val launchesLiveData = MutableLiveData<List<RocketLaunch>>()
     val errorLiveData = MutableLiveData<Exception>()
@@ -17,7 +18,7 @@ class SpaceXViewModel(
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun getAllRocketLaunches() {
         viewModelScope.launch {
-            when (val result = spaceXRepository.getAllRocketLaunches()) {
+            when (val result = getAllLaunchesUseCase.call(UseCase.None)) {
                 is Result.Success<List<RocketLaunch>> -> launchesLiveData.value = result.data
                 is Result.Failure-> errorLiveData.value = result.exception
             }
