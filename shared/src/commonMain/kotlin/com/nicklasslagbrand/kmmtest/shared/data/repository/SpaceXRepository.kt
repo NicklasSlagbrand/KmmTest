@@ -10,7 +10,6 @@ import kotlinx.coroutines.withContext
 class SpaceXRepository () {
     private val api = SpaceXApi()
     private val dispatchers = DefaultDispatcherProvider()
-    private bluetooth:
 
     suspend fun getAllRocketLaunches(): Result<List<RocketLaunch>> = wrapResult {
         withContext(dispatchers.io()) {
